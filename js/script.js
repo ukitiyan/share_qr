@@ -11,18 +11,14 @@
 (function ($, OC) {
 
 	$(document).ready(function () {
-		$('#hello').click(function () {
-			alert('Hello from your script file');
-		});
-
-		$('#echo').click(function () {
-			var url = OC.generateUrl('/apps/share_qr/echo');
+		$('#savepath').click(function () {
+			var url = OC.generateUrl('/apps/share_qr/savepath');
 			var data = {
-				echo: $('#echo-content').val()
+				path: $('#path-content').val()
 			};
 
 			$.post(url, data).success(function (response) {
-				$('#echo-result').text(response.echo);
+
 			});
 			
 		});

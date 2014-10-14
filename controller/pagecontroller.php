@@ -9,7 +9,7 @@
  * @copyright Begood Technology Corp. 2014
  */
 
-namespace OCA\ShareQr\Controller;
+namespace OCA\Share_qr\Controller;
 
 
 use \OCP\IRequest;
@@ -46,8 +46,8 @@ class PageController extends Controller {
      * Simply method that posts back the payload of the request
      * @NoAdminRequired
      */
-    public function doEcho($echo) {
-        return array('echo' => $echo);
+    public function savepath($path) {
+        return array('echo' => $path);
     }
 
 

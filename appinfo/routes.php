@@ -9,7 +9,7 @@
  * @copyright Begood Technology Corp. 2014
  */
 
-namespace OCA\ShareQr\AppInfo;
+namespace OCA\Share_qr\AppInfo;
 
 /**
  * Create your routes in here. The name is the lowercase name of the controller
@@ -23,5 +23,5 @@ $application = new Application();
 
 $application->registerRoutes($this, array('routes' => array(
 	array('name' => 'page#index', 'url' => '/', 'verb' => 'GET'),
-    array('name' => 'page#do_echo', 'url' => '/echo', 'verb' => 'POST'),
+    array('name' => 'page#savepath', 'url' => '/savepath', 'verb' => 'POST'),
 )));

@@ -9,14 +9,14 @@
  * @copyright Begood Technology Corp. 2014
  */
 
-namespace OCA\ShareQr\Controller;
+namespace OCA\Share_qr\Controller;
 
 
 use \OCP\IRequest;
 use \OCP\AppFramework\Http\TemplateResponse;
 use \OCP\AppFramework\Http\JSONResponse;
 
-use \OCA\ShareQr\AppInfo\Application;
+use \OCA\Share_qr\AppInfo\Application;
 
 
 class PageControllerTest extends \PHPUnit_Framework_TestCase {

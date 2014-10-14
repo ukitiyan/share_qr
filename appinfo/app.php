@@ -9,7 +9,7 @@
  * @copyright Begood Technology Corp. 2014
  */
 
-namespace OCA\ShareQr\AppInfo;
+namespace OCA\Share_qr\AppInfo;
 
 
 \OCP\App::addNavigationEntry(array(
@@ -29,5 +29,9 @@ namespace OCA\ShareQr\AppInfo;
 
     // the title of your application. This will be used in the
     // navigation or on the settings page of your app
-    'name' => \OC_L10N::get('share_qr')->t('Hello World')
+    'name' => \OC_L10N::get('share_qr')->t('Shared QR')
 ));
+
+$app = new Application();
+//$app->getContainer()->query('FilesystemHooks')->register();
+\OCP\Util::connectHook(\OC\Files\Filesystem::CLASSNAME, \OC\Files\Filesystem::signal_post_create, $app->getContainer()->query('FilesystemHooks'), 'create');

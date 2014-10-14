@@ -9,13 +9,14 @@
  * @copyright Begood Technology Corp. 2014
  */
 
-namespace OCA\ShareQr\AppInfo;
+namespace OCA\Share_qr\AppInfo;
 
 
 use \OCP\AppFramework\App;
 use \OCP\IContainer;
 
-use \OCA\ShareQr\Controller\PageController;
+use \OCA\Share_qr\Controller\PageController;
+use \OCA\Share_qr\Hooks\FilesystemHooks;
 
 
 class Application extends App {
@@ -37,14 +38,23 @@ class Application extends App {
 			);
 		});
 
-
 		/**
 		 * Core
 		 */
 		$container->registerService('UserId', function(IContainer $c) {
 			return \OCP\User::getUser();
-		});		
-		
+		});
+
+		/**
+		 * Hooks
+		 */
+		$container->registerService('FilesystemHooks', function(IContainer $c) {
+			return new FilesystemHooks(
+				$c->query('ServerContainer')->getRootFolder(),
+				$c->query('ServerContainer')->getUserFolder()
+			);
+		});
+
 	}
 
 
