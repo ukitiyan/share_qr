@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<info>
+    <id>share_qr</id>
+    <name>Share QR</name>
+    <description>Shares And QR App</description>
+    <licence>AGPL</licence>
+    <author>Begood Technology Corp.</author>
+    <version>0.0.1</version>
+    <requiremin>7</requiremin>
+</info>
