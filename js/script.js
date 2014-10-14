@@ -18,7 +18,8 @@
 			};
 
 			$.post(url, data).success(function (response) {
-
+				$('#path-result').val(response.path);
+				alert('Save Path: ' + response.path);
 			});
 			
 		});

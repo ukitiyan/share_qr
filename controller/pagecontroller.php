@@ -37,17 +37,37 @@ class PageController extends Controller {
      * @NoCSRFRequired
      */
     public function index() {
-        $params = array('user' => $this->userId);
+		$path = \OC_Preferences::getValue(\OC_User::getUser(), 'share_qr', 'path', '');
+		$imgSrc = null;
+		$imgDate = null;
+
+		$imgPath = \OC_User::getHome($this->userId). '/qr/qr.png';
+		if (file_exists($imgPath)) {
+			$base64 = base64_encode(file_get_contents($imgPath));
+			$mime = 'image/png';
+			$imgSrc = 'data:'.$mime.';base64,'.$base64;
+			date_default_timezone_set( 'Asia/Tokyo' );
+			$imgDate = date ("Y/m/d H:i:s", filemtime($imgPath));
+		}
+
+        $params = array(
+			'user' => $this->userId,
+			'path' => $path,
+			'imgSrc' => $imgSrc,
+			'imgDate' => $imgDate
+		);
         return new TemplateResponse('share_qr', 'main', $params);  // templates/main.php
     }
 
 
     /**
-     * Simply method that posts back the payload of the request
+     * Save path method
      * @NoAdminRequired
      */
     public function savepath($path) {
-        return array('echo' => $path);
+		$normalizePath = \OC\Files\Filesystem::normalizePath($path);
+		\OC_Preferences::setValue(\OC_User::getUser(), 'share_qr', 'path', $normalizePath);
+        return array('path' => $normalizePath);
     }
 
 

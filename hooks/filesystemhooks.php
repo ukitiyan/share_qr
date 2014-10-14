@@ -35,10 +35,19 @@ class FilesystemHooks {
 		$view = new \OC\Files\View('/'.$user.'/files');
 		$fileInfo = $view->getFileInfo($node['path']);
 		if (!$fileInfo) {
+			\OC_Log::write('share_qr', '$fileInfo is null', \OC_Log::DEBUG);
 			return false;
 		}
 
-
+		$sharPath = \OC_Preferences::getValue(\OC_User::getUser(), 'share_qr', 'path', null);
+		if (!$sharPath) {
+			\OC_Log::write('share_qr', '$sharPath is null', \OC_Log::DEBUG);
+			return false;
+		}
+		if (!preg_match('/^'. preg_quote($sharPath, "/"). '/', $node['path'])) {// || !preg_match('/\.png$/', $node['path'])) {
+			\OC_Log::write('share_qr', 'node path is false', \OC_Log::DEBUG);
+			return false;
+		}
 
 		// create share
 		$key = \OCP\Share::shareItem('file', $fileInfo['fileid'], \OCP\Share::SHARE_TYPE_LINK, null, \OCP\PERMISSION_ALL);
@@ -51,7 +60,5 @@ class FilesystemHooks {
 			mkdir($dir, 0755);
 		}
 		\QRcode::png($url, $dir. '/'. $filename);
-
-		\OC_Log::write('share_qr', $url, \OC_Log::DEBUG);
 	}
 }

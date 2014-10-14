@@ -11,7 +11,7 @@
 		<div id="app-settings-content">
 			<h2><?php p($l->t('Share Path'));?></h2>
 			<div>
-				<p><input id="path-content" type="text" value="" /></p>
+				<p><input id="path-content" type="text" value="<?php p($_['path']) ?>" /></p>
 				<p><button id="savepath">Save</button></p>
 			</div>
 		</div>
